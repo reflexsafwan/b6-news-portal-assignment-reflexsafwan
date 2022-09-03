@@ -1,12 +1,12 @@
 
 const loadCatagories = () => {
-    const url = ('https://openapi.programming-hero.com/api/news/categories')
+
+    const url = ('https://openapi.programming-hero.com/api/news/categories');
     fetch(url)
         .then(res => res.json())
         .then(data => displayCatagories(data.data.news_category))
         .catch(error => console.log(error));
 }
-
 
 const displayCatagories = (catagories) => {
     // console.log(catagories)
@@ -32,20 +32,28 @@ const displayCatagories = (catagories) => {
 }
 
 const loadingNews = (catagoryID) => {
-    const url = ` https://openapi.programming-hero.com/api/news/category/${catagoryID}`
+    toggleSpiner(true)
+    const url = ` https://openapi.programming-hero.com/api/news/category/${catagoryID}`;
     fetch(url)
         .then(res => res.json())
         .then(catagory => displayNews(catagory.data));
 
-
 }
 const displayNews = (catagory) => {
     // console.log(catagory)
+    toggleSpiner(false);
+
+    const viwed = catagory;
+    viwed.sort(function (a, b) {
+        return b.total_view - a.total_view;
+    })
     const showCard = document.getElementById('card-conatiner');
 
     showCard.textContent = ""
     const cardNumber = document.getElementById('post-number');
     cardNumber.innerText = catagory.length;
+
+
     catagory.forEach(card => {
         // console.log(card._id)
         const cardBody = document.createElement('div');
@@ -53,13 +61,13 @@ const displayNews = (catagory) => {
 
         cardBody.innerHTML = `
                 <div class="col-md-4 ">
-                <img src="${card.image_url}" class="img-fluid rounded-start" alt="...">
+                <img src="${card.thumbnail_url}" class="img-fluid rounded-start w-75" alt="...">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">${card.title ? card.title : "not found"}</h5>
                     <p class="card-text"> ${card.details.length > 100 ? card.details.slice(0, 250) + '...' : 'not found'}</p >
-                    <div class="d-lg-flex justify-content-evenly">
+                    <div class="d-lg-flex justify-content-evenly mt-5">
                     <div class="d-flex">
                       <img class="rounded-circle" width = 40px src="${card.author.img}" alt="">
                       <div>
@@ -83,21 +91,14 @@ const displayNews = (catagory) => {
           </div>
             </div >
     `
-
-
         showCard.appendChild(cardBody)
-
-        toggleSpiner(false);
     });
-
-
-
 
 }
 
 const loadNewsDetails = (news_id) => {
     // console.log(news_id)
-    toggleSpiner(true)
+
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`
     fetch(url)
         .then(res => res.json())
@@ -105,6 +106,7 @@ const loadNewsDetails = (news_id) => {
 
 }
 const showNewsdetails = (news) => {
+
     console.log(news)
     const modalId = document.getElementById('modal-dialog');
     modalId.textContent = '';
@@ -125,7 +127,6 @@ const showNewsdetails = (news) => {
     `
     modalId.appendChild(modalDiv)
 
-
 }
 
 const toggleSpiner = isLoading => {
@@ -137,7 +138,5 @@ const toggleSpiner = isLoading => {
         loaderSection.classList.add('d-none')
     }
 }
-
-
 
 loadCatagories()
