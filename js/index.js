@@ -27,7 +27,7 @@ const displayCatagories = (catagories) => {
 
 
         categoriesContainer.appendChild(ul)
-        toggleSpiner(true)
+
     });
 }
 
@@ -42,6 +42,7 @@ const loadingNews = (catagoryID) => {
 const displayNews = (catagory) => {
     // console.log(catagory)
     const showCard = document.getElementById('card-conatiner');
+
     showCard.textContent = ""
     const cardNumber = document.getElementById('post-number');
     cardNumber.innerText = catagory.length;
@@ -96,6 +97,7 @@ const displayNews = (catagory) => {
 
 const loadNewsDetails = (news_id) => {
     // console.log(news_id)
+    toggleSpiner(true)
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`
     fetch(url)
         .then(res => res.json())
