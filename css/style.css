@@ -1,3 +1,4 @@
-main ul{
+main ul a{
     list-style-type: none;
+    text-decoration: none;
 }
