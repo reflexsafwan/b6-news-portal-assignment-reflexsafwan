@@ -23,14 +23,11 @@ const displayCatagories = (catagories) => {
                  <li> ${catagory.category_name}</li>
                  
            </a>
-              `
-
-
+              `;
         categoriesContainer.appendChild(ul)
 
     });
-}
-
+};
 const loadingNews = (catagoryID) => {
     toggleSpiner(true)
     const url = ` https://openapi.programming-hero.com/api/news/category/${catagoryID}`;
@@ -94,8 +91,7 @@ const displayNews = (catagory) => {
         showCard.appendChild(cardBody)
     });
 
-}
-
+};
 const loadNewsDetails = (news_id) => {
     // console.log(news_id)
 
@@ -125,8 +121,7 @@ const showNewsdetails = (news) => {
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             </div>
     `
-    modalId.appendChild(modalDiv)
-
+    modalId.appendChild(modalDiv);
 }
 
 const toggleSpiner = isLoading => {
