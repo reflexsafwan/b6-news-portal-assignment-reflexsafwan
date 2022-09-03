@@ -9,7 +9,9 @@ const loadCatagories = () => {
 
 const displayCatagories = (catagories) => {
     // console.log(catagories)
+
     const categoriesContainer = document.getElementById('catagory-container');
+
     catagories.forEach((catagory) => {
         // console.log(catagory)
         const ul = document.createElement('ul')
@@ -18,9 +20,13 @@ const displayCatagories = (catagories) => {
         ul.innerHTML = `
             <a onclick= "loadingNews('${catagory.category_id}')" href = "#">
                  <li> ${catagory.category_name}</li>
+                 
            </a>
               `
+
+
         categoriesContainer.appendChild(ul)
+        toggleSpiner(true)
     });
 }
 
@@ -77,6 +83,8 @@ const displayNews = (catagory) => {
 
 
         showCard.appendChild(cardBody)
+
+        toggleSpiner(false);
     });
 
 
@@ -114,6 +122,16 @@ const showNewsdetails = (news) => {
     modalId.appendChild(modalDiv)
 
 
+}
+
+const toggleSpiner = isLoading => {
+    const loaderSection = document.getElementById('loader')
+    if (isLoading) {
+        loaderSection.classList.remove('d-none')
+    }
+    else {
+        loaderSection.classList.add('d-none')
+    }
 }
 
 
