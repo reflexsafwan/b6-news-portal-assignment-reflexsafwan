@@ -66,14 +66,14 @@ const displayNews = (catagory) => {
                       </div>
                     </div>
                     <div>
-                        <div class ="d-lg-flex">
-                            <i class="fa-regular fa-eye"></i>
-                            <p>${card.total_view ? card.total_view : "No views"}</p>
+                        <div class ="d-inline ">
+                            <i class="fa-regular fa-eye pt-2 d-inline"></i>
+                            <p class="d-inline">${card.total_view ? card.total_view : "No views"}</p>
                         </div>
                             
                          </div>
                     <div>
-                      <button onclick = "loadNewsDetails('${card._id}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Showdetails</button>
+                      <button onclick = "loadNewsDetails('${card._id}')" class="btn btn-primary mt-sm-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Showdetails</button>
                     </div>
                   </div>
                 </div>
