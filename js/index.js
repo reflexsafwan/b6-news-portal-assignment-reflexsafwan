@@ -4,6 +4,7 @@ const loadCatagories = () => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayCatagories(data.data.news_category))
+        .catch(error => console.log(error));
 }
 
 
@@ -35,6 +36,7 @@ const loadingNews = (catagoryID) => {
     fetch(url)
         .then(res => res.json())
         .then(catagory => displayNews(catagory.data));
+
 
 }
 const displayNews = (catagory) => {
